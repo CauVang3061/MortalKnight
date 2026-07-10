@@ -55,8 +55,11 @@ public class MeleeWeaponController : MonoBehaviour
         {
             if (hit.TryGetComponent<IDamageable>(out var damageable))
             {
-                // Đây chính là dòng bản gốc THIẾU — sửa bug số 1.
                 damageable.TakeDamage(weaponData.attack, transform.position);
+            }
+            if (weaponData.appliedEffect != null && hit.TryGetComponent<StatusEffectReceiver>(out var receiver))
+            {
+                receiver.ApplyEffect(weaponData.appliedEffect);
             }
         }
         StartCoroutine(SwingAnimation());

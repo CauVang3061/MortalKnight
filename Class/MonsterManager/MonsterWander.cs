@@ -19,6 +19,7 @@ public class MonsterWander : MonoBehaviour
         stateTimer -= Time.fixedDeltaTime;
         if (isWalking)
         {
+            float speedMultiplier = statusEffects != null ? statusEffects.CurrentSpeedMultiplier : 1f;
             rb.MovePosition(rb.position + currentDirection * monster.Data.moveSpeed * Time.fixedDeltaTime);
         }
         if (stateTimer <= 0f)

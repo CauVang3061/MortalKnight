@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsKnockedBack) return; // đang bị đẩy lùi -> PlayerHealth toàn quyền điều khiển transform lúc này
         Vector2 direction = inputReader.MoveDirection;
         // Di chuyển nhân vật theo hướng input, với tốc độ moveSpeed, frame-rate independent
+        float speedMultiplier = statusEffects != null ? statusEffects.CurrentSpeedMultiplier : 1f;
         transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
         UpdateFacingDirection(direction);
     }
