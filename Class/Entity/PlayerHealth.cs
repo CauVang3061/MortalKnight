@@ -68,11 +68,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         CurrentMP = Mathf.Min(CurrentMP + mpRegenPerSecond * Time.deltaTime, maxMP);
         OnMPChanged?.Invoke(CurrentMP, maxMP);
     }
-
-    /// <summary>
     /// Gọi từ Knight (hoặc skill khác sau này) để tiêu MP. Trả về false nếu không đủ MP,
-    /// skill nên kiểm tra giá trị trả về trước khi thực hiện hành động.
-    /// </summary>
     public bool TrySpendMP(float amount)
     {
         if (CurrentMP < amount) return false;
@@ -80,21 +76,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         OnMPChanged?.Invoke(CurrentMP, maxMP);
         return true;
     }
-    /// <summary>
     /// Cho phép skill/hiệu ứng bên ngoài cấp bất tử tạm thời — dùng chung state với bất tử sau khi trúng đòn
-    /// </summary>
     public void GrantInvincibility(float duration)
     {
         IsInvincible = true;
         invincibilityTimer = Mathf.Max(invincibilityTimer, duration);
     }
-    /// <summary>Hồi máu — dùng cho bình đỏ (PickBottle).</summary>
+    /// Hồi máu — dùng cho bình đỏ (PickBottle)
     public void Heal(float amount)
     {
         CurrentHP = Mathf.Min(CurrentHP + amount, maxHP);
         OnHealthChanged?.Invoke(CurrentHP, maxHP);
     }
-    /// <summary>Hồi MP — dùng cho bình xanh (PickBottle).</summary>
+    /// Hồi MP — dùng cho bình xanh (PickBottle)
     public void RestoreMP(float amount)
     {
         CurrentMP = Mathf.Min(CurrentMP + amount, maxMP);
