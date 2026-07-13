@@ -1,13 +1,21 @@
+// Cách làm cụ thể trong Unity:
+// 1. Tạo GameObject mới cho Charger (sprite, Rigidbody2D, Collider2D)
+// 2. Add Component --> gõ tìm Monster --> add
+// 3. Add Component --> gõ tìm StatusEffectReceiver --> add
+// 4. Add Component --> gõ tìm ChargerAndMummy --> add
+// 5. Chỉnh số liệu trong Inspector
+// 6. Kéo thành prefab
+// Đối với Mummy, làm tương tự (chỉ khác bước 5: chỉnh số liệu lại trong Inspector sao cho phù hợp với Mummy)
 using UnityEngine;
 public enum ChargerState { Charging, Wandering }
 /// <summary>
-/// AI của Charger — tương đương Charger.cpp bản gốc: lao thẳng vào player
+/// AI của Charger và Mummy — lao thẳng vào player
 /// khi đâm vào tường thì tạm chuyển sang lang thang ngẫu nhiên
 /// Vector2.normalized. Pha lang thang dùng thời gian thực (giây) qua Time.fixedDeltaTime.
 /// </summary>
 [RequireComponent(typeof(Monster))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class ChargerAI : MonoBehaviour
+public class ChargerAndMummy : MonoBehaviour
 {
     [SerializeField] private float chargeSpeed = 5f;
     [SerializeField] private int maxChargeSteps = 100;
