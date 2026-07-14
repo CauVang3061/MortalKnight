@@ -53,6 +53,10 @@ public class StatusBar : MonoBehaviour
         if (slider == null) return;
         slider.maxValue = max;
         slider.value = current;
+        if (label != null)
+        {
+            label.text = $"{Mathf.RoundToInt(current)}/{Mathf.RoundToInt(max)}";
+        }
     }
     private float GetSliderMax(Slider slider, float fallback)
     {
