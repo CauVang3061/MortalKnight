@@ -32,7 +32,7 @@ public class PauseManager : MonoBehaviour
     }
     private void OnDestroy()
     {
-        // Đảm bảo không bao giờ để game bị "kẹt" ở trạng thái timeScale = 0 nếu scene bị đổi trong lúc đang pause.
+        // Đảm bảo game không bị "kẹt" ở trạng thái timeScale = 0 nếu scene bị đổi trong lúc đang pause.
         Time.timeScale = 1f;
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerHealth))]
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerInputReader))]
-public class KnightSkill : MonoBehaviour
+public class Knight : MonoBehaviour
 {
     [SerializeField] private KeyCode activateKey = KeyCode.Space;
     [SerializeField] private float mpCost = 50f;

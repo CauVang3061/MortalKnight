@@ -7,7 +7,7 @@ public class WeaponBuff : ScriptableObject
     public float attackBonus = 0f;
     public float cooldownReduction = 0f; // trừ vào fireCooldown --> bắn nhanh hơn
     public float rangeBonus = 0f;
-    public float spreadReduction = 0f;   // trừ vào spreadAngle --> chính xác hơn
+    public float spreadReduction = 0f;   // trừ vào spreadAngle --> bắn chính xác hơn
     public bool isPermanent = false;
     [Tooltip("Chỉ dùng nếu IsPermanent = false")]
     public float duration = 5f;

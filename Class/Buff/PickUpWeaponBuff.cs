@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class PickupWeaponBuff : Interactable
 {
-    [SerializeField] private WeaponBuffData buffData;
+    [SerializeField] private WeaponBuff buffData;
     protected override void Interact()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");

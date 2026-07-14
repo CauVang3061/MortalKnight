@@ -1,8 +1,8 @@
 // Cách gắn vào Unity:
 // 1. Tạo một GameObject mới trong Scene, đặt tên Player
-// 2. Thêm component Sprite Renderer (Add Component → Sprite Renderer), kéo sprite nhân vật vào ô Sprite
+// 2. Thêm component Sprite Renderer (Add Component --> Sprite Renderer), kéo sprite nhân vật vào ô Sprite
 // 3. Kéo cả 2 file PlayerInputReader.cs và PlayerMovement.cs vào GameObject Player này
-// (kéo thả vào Inspector, hoặc Add Component → gõ tên script)
+// (kéo thả vào Inspector, hoặc Add Component --> gõ tên script)
 // 4. Trong Inspector của PlayerMovement, kéo chính GameObject Player (hoặc component Sprite Renderer của nó)
 // vào ô Sprite Renderer nếu nó chưa tự nhận
 // 5. Nhấn Play, thử W/A/S/D

@@ -1,7 +1,7 @@
 // Cách setup trong Unity:
 
-// 1. Tạo Canvas (GameObject → UI → Canvas)
-// 2. Trong Canvas, tạo Slider (GameObject → UI → Slider) - đặt tên HealthBar, kéo nó vào góc màn hình góc trên bên trái
+// 1. Tạo Canvas (GameObject --> UI --> Canvas)
+// 2. Trong Canvas, tạo Slider (GameObject --> UI --> Slider) - đặt tên HealthBar, kéo nó vào góc màn hình góc trên bên trái
 // 3. Trong Slider, xóa/ẩn phần Handle Slide Area vì thanh máu không cần kéo tay - chỉ cần phần Fill Area hiển thị
 // 4. Đổi màu phần Fill sang đỏ/xanh lá tùy ý
 // 5. Tạo GameObject rỗng tên StatusBarManager, gắn script StatusBar.cs, kéo Slider vào ô Health Slider

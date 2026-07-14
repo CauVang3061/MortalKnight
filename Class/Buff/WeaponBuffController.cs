@@ -13,7 +13,7 @@ public class WeaponBuffController : MonoBehaviour
         public float remainingTime;
     }
     private readonly List<ActiveBuff> activeBuffs = new List<ActiveBuff>();
-    public void AddBuff(WeaponBuffData data)
+    public void AddBuff(WeaponBuff data)
     {
         if (data == null) return;
         activeBuffs.Add(new ActiveBuff { data = data, remainingTime = data.duration });
