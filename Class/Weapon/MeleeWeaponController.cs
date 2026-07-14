@@ -18,9 +18,11 @@ public class MeleeWeaponController : MonoBehaviour
     }
     private float cooldownTimer;
     private bool isSwinging;
+    private WeaponBuffController buffController;
     private void Awake()
     {
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        buffController = GetComponent<WeaponBuffController>();
     }
     private void Update()
     {
@@ -49,6 +51,15 @@ public class MeleeWeaponController : MonoBehaviour
     {
         if (cooldownTimer > 0f) return false;
         if (weaponData == null) return false;
+        float effectiveCooldown = weaponData.attackCooldown;
+        float effectiveAttack = weaponData.attack;
+        float effectiveRange = weaponData.attackRange;
+        if (buffController != null)
+        {
+            effectiveCooldown = Mathf.Max(0.05f, effectiveCooldown - buffController.GetCooldownReduction());
+            effectiveAttack += buffController.GetAttackBonus();
+            effectiveRange += buffController.GetRangeBonus();
+        }
         cooldownTimer = weaponData.attackCooldown;
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, weaponData.attackRange, targetLayer);
         foreach (Collider2D hit in hits)

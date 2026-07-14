@@ -11,7 +11,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private WeaponSide side = WeaponSide.Player;
     [SerializeField] private Transform firePoint;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    // Hướng ngắm hiện tại, được gán từ bên ngoài (PlayerAimController hoặc AI).
+    // Hướng ngắm hiện tại, được gán từ PlayerAimController hoặc AI
     public Vector2 AimDirection { get; set; } = Vector2.right;
     public void Equip(WeaponData newData)
     {
@@ -19,10 +19,12 @@ public class WeaponController : MonoBehaviour
         cooldownTimer = 0f;
     }
     private float cooldownTimer;
+    private WeaponBuffController buffController;
     private void Awake()
     {
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
         if (firePoint == null) firePoint = transform;
+        buffController = GetComponent<WeaponBuffController>();
     }
     private void Update()
     {
@@ -38,7 +40,7 @@ public class WeaponController : MonoBehaviour
         // Xoay sprite súng theo aimDirection để ngắm đúng hướng.
         float angle = Mathf.Atan2(AimDirection.y, AimDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
-        // Lật theo trục Y khi ngắm sang trái, để súng không bị "lộn ngược đầu nòng"
+        // Lật theo trục Y khi ngắm sang trái, để súng không bị "lộn ngược đầu nòng".
         if (spriteRenderer != null)
         {
             Vector3 scale = transform.localScale;
@@ -54,6 +56,16 @@ public class WeaponController : MonoBehaviour
     {
         if (cooldownTimer > 0f) return false;
         if (weaponData == null || weaponData.bulletPrefab == null) return false;
+        // Tính chỉ số thực đang nhận = gốc + tổng buff đang active — không mutate weaponData gốc
+        float effectiveCooldown = weaponData.fireCooldown;
+        float effectiveAttack = weaponData.attack;
+        float effectiveSpread = weaponData.spreadAngle;
+        if (buffController != null)
+        {
+            effectiveCooldown = Mathf.Max(0.05f, effectiveCooldown - buffController.GetCooldownReduction());
+            effectiveAttack += buffController.GetAttackBonus();
+            effectiveSpread = Mathf.Max(0f, effectiveSpread - buffController.GetSpreadReduction());
+        }
         cooldownTimer = weaponData.fireCooldown;
         for (int i = 0; i < weaponData.bulletsPerShot; i++)
         {
