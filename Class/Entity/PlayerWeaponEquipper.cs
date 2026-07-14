@@ -1,5 +1,8 @@
-// Trong Inspector của PlayerWeaponEquipper: kéo GunPivot vào ô Gun Controller, MeleePivot vào ô Melee Controller. Chỉ 1 trong 2 hiển thị tại một thời điểm (tự động bật/tắt).
-// Tạo vũ khí nhặt được: GameObject nhỏ có SpriteRenderer + Collider2D (Is Trigger), gắn PickupWeapon.cs, gán 1 trong 2 ô Gun Data HOẶC Melee Data (không gán cả 2). Kéo thành prefab, thêm vào mảng Reward Prefabs của TreasureBox để rương báu có thể sinh ra nó ngẫu nhiên.
+// Trong Inspector của PlayerWeaponEquipper: kéo GunPivot vào ô Gun Controller, MeleePivot vào ô Melee Controller.
+// Chỉ 1 trong 2 hiển thị tại một thời điểm (tự động bật/tắt).
+// Tạo vũ khí nhặt được: GameObject nhỏ có SpriteRenderer + Collider2D (Is Trigger), gắn PickupWeapon.cs,
+// gán 1 trong 2 ô Gun Data hoặc Melee Data (không gán cả 2).
+// Kéo thành prefab, thêm vào mảng Reward Prefabs của TreasureBox để rương báu có thể sinh ra nó ngẫu nhiên.
 
 using UnityEngine;
 /// <summary>

@@ -9,8 +9,8 @@ public class TransferPortal : Interactable
 {
     [SerializeField] private bool isFinalPortal = true;
     [SerializeField] private string nextSceneName;
-    [Tooltip("Kéo GameObject có WinUI vào đây nếu isFinalPortal = true")]
-    [SerializeField] private WinUI winUI;
+    [Tooltip("Kéo GameObject có WinScene vào đây nếu isFinalPortal = true")]
+    [SerializeField] private WinScene winUI;
     private bool isUsed;
     protected override void Interact()
     {

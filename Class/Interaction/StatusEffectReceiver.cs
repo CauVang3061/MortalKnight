@@ -2,6 +2,7 @@
 // Tạo các asset StatusEffectData (Create → Status Effect → Status Effect Data) cho từng loại:
 // Poison (damage theo tick), Burn (tương tự Poison, khác tên/hiệu ứng hình ảnh sau này), Freeze (speedMultiplier = 0),
 // SlowDown (speedMultiplier < 1), SpeedUp (speedMultiplier > 1).
+
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>

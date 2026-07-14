@@ -9,7 +9,7 @@ public class WeaponBuffController : MonoBehaviour
 {
     private class ActiveBuff
     {
-        public WeaponBuffData data;
+        public WeaponBuff data;
         public float remainingTime;
     }
     private readonly List<ActiveBuff> activeBuffs = new List<ActiveBuff>();

@@ -24,7 +24,6 @@ public class ChargerAndMummy : MonoBehaviour
     [SerializeField] private float wanderSpeed = 2f;
     [SerializeField] private float wanderStepDuration = 1.5f;
     [SerializeField] private int maxTwists = 3;
-    [Header("Phát hiện tường")]
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private float obstacleCheckDistance = 0.3f;
 

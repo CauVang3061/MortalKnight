@@ -1,10 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-/// <summary>
-/// Hiện màn hình thua khi Player chết — tương đương LoseScene bản gốc
-/// (Director::pushScene(LoseScene::createScene()) gọi từ menuLoseCallBack()).
-/// </summary>
-public class GameOverUI : MonoBehaviour
+public class LoseScene : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private PlayerHealth playerHealth;
