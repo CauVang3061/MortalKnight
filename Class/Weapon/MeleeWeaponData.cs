@@ -14,4 +14,5 @@ public class MeleeWeaponData : ScriptableObject
     [Tooltip("Bán kính gây sát thương — mọi kẻ địch trong bán kính này đều trúng đòn, không cần đúng hướng")]
     public float attackRange = 1.2f;
     public float swingDuration = 0.2f;
+    public StatusEffectData appliedEffect;
 }

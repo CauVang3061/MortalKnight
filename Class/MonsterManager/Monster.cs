@@ -28,12 +28,20 @@ public class Monster : MonoBehaviour, IDamageable
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
+        HandleContactDamage(other.gameObject);
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        HandleContactDamage(collision.gameObject);
+    }
+
+    private void HandleContactDamage(GameObject target)
+    {
+        if (!target.CompareTag("Player")) return;
         if (Time.time - lastContactDamageTime < contactDamageCooldown) return;
-        if (other.TryGetComponent<IDamageable>(out var damageable))
-        {
-            damageable.TakeDamage(data.contactDamage, transform.position);
-            lastContactDamageTime = Time.time;
+        if (target.TryGetComponent<IDamageable>(out var damageable)){
+                damageable.TakeDamage(data.contactDamage,transform.position);
+                lastContactDamageTime = Time.time;
         }
     }
 }

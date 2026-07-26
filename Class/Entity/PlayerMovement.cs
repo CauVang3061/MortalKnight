@@ -17,15 +17,19 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Sprite của nhân vật, dùng để lật trái/phải theo hướng di chuyển")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     private PlayerInputReader inputReader;
+    private StatusEffectReceiver statusEffects;
     // PlayerHealth bật cờ này lên khi đang chạy hiệu ứng knockback (đẩy lùi khi trúng đòn),
     // để PlayerMovement tạm ngừng đọc input — tránh 2 script cùng ghi đè transform.position
     // trong cùng 1 frame, giống cách bản gốc chặn di chuyển bằng "if (isKnockBack) return;"
     // trong Character::setTagPosition().
+    private Rigidbody2D rb;
     public bool IsKnockedBack { get; set; }
     private void Awake()
     {
         // Lấy tham chiếu tới component PlayerInputReader gắn trên cùng GameObject
         inputReader = GetComponent<PlayerInputReader>();
+        statusEffects = GetComponent<StatusEffectReceiver>();
+        rb = GetComponent<Rigidbody2D>();
         // Nếu quên kéo SpriteRenderer vào Inspector, tự tìm trên GameObject này.
         if (spriteRenderer == null)
         {
@@ -38,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 direction = inputReader.MoveDirection;
         // Di chuyển nhân vật theo hướng input, với tốc độ moveSpeed, frame-rate independent
         float speedMultiplier = statusEffects != null ? statusEffects.CurrentSpeedMultiplier : 1f;
-        transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+        rb.linearVelocity = direction * moveSpeed * speedMultiplier;
         UpdateFacingDirection(direction);
     }
     private void UpdateFacingDirection(Vector2 direction)

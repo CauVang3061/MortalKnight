@@ -32,6 +32,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public float CurrentHP { get; private set; }
     public float CurrentArmor { get; private set; }
     public float CurrentMP { get; private set; }
+    public float MaxHP => maxHP;
+    public float MaxArmor => maxArmor;
+    public float MaxMP => maxMP;
     public bool IsInvincible { get; private set; }
     private float invincibilityTimer;
     private float timeSinceLastHit;

@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Rương báu - kéo-thả 1 mảng prefab phần thưởng trong Inspector — thêm phần thưởng mới
 /// </summary>
-public class TreasureBox : Interaction
+public class TreasureBox : Interactable
 {
     [SerializeField] private SpriteRenderer boxRenderer;
     [SerializeField] private Sprite openSprite;

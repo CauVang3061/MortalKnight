@@ -7,10 +7,12 @@ using UnityEngine;
 public class PlayerAimController : MonoBehaviour
 {
     private WeaponController weaponController;
+    private PlayerWeaponEquipper equipper;
     private Camera mainCamera;
     private void Awake()
     {
         weaponController = GetComponent<WeaponController>();
+        equipper = GetComponent<PlayerWeaponEquipper>();
         mainCamera = Camera.main;
     }
     private void Update()
