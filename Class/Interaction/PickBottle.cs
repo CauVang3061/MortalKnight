@@ -8,7 +8,18 @@ public class PickBottle : Interactable
     [SerializeField] private float mpRestoreAmount = 80f;
     protected override void Interact()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        // Sử dụng PlayerObject từ lớp cha Interactable, hoặc tự tìm kiếm dự phòng
+        GameObject player = PlayerObject;
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        if (player == null)
+        {
+            PlayerHealth fallbackHealth = FindObjectOfType<PlayerHealth>();
+            if (fallbackHealth != null) player = fallbackHealth.gameObject;
+        }
+
         if (player == null) return;
         if (!player.TryGetComponent<PlayerHealth>(out var health)) return;
         if (bottleType == BottleType.Red)

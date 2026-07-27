@@ -8,7 +8,6 @@
 // (ô Player Health có thể để trống, script tự tìm theo Tag "Player")
 // 6. Nhấn Play, để quái đánh trúng Player - thanh máu sẽ tự giảm theo
 
-using NUnit;
 using UnityEngine;
 using UnityEngine.UI;
 // Cập nhật thanh máu (Slider) trên UI dựa theo event từ PlayerHealth.
@@ -56,7 +55,14 @@ public class StatusBarUI : MonoBehaviour
         if (playerHealth == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null) playerHealth = playerObj.GetComponent<PlayerHealth>();
+            if (playerObj != null)
+            {
+                playerHealth = playerObj.GetComponent<PlayerHealth>();
+            }
+            else
+            {
+                playerHealth = FindObjectOfType<PlayerHealth>();
+            }
         }
     }
     private void InitializeUI()

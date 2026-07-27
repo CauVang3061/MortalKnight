@@ -12,14 +12,19 @@ public class MonsterSpawn : MonoBehaviour
     [SerializeField] private float spawnRadius = 3f;
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private int maxPlacementAttempts = 20;
-    private bool hasSpawned = false;
-    private void OnTriggerEnter2D(Collider2D other)
+    public System.Collections.Generic.List<Monster> SpawnedMonsters { get; } = new System.Collections.Generic.List<Monster>();
+    public bool HasSpawned { get; private set; } = false;
+    public void TriggerSpawn()
     {
-        if (hasSpawned) return;
-        if (!other.CompareTag("Player")) return;
-        hasSpawned = true;
+        if (HasSpawned) return;
+        HasSpawned = true;
         int spawnCount = Random.Range(minSpawnCount, maxSpawnCount + 1);
         SpawnMonsters(spawnCount);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player") && other.GetComponent<PlayerHealth>() == null) return;
+        TriggerSpawn();
     }
     private void SpawnMonsters(int count)
     {
@@ -28,7 +33,8 @@ public class MonsterSpawn : MonoBehaviour
             if (TryFindValidSpawnPoint(out Vector2 point))
             {
                 Monster prefab = monsterPrefabs[Random.Range(0, monsterPrefabs.Length)];
-                Instantiate(prefab, point, Quaternion.identity);
+                Monster instance = Instantiate(prefab, point, Quaternion.identity);
+                SpawnedMonsters.Add(instance);
             }
         }
     }

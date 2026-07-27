@@ -13,16 +13,32 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     // Hướng ngắm hiện tại, được gán từ bên ngoài (PlayerAimController hoặc AI).
     public Vector2 AimDirection { get; set; } = Vector2.right;
+    public WeaponSide Side { get => side; set => side = value; }
+    public WeaponData WeaponData => weaponData;
     public void Equip(WeaponData newData)
     {
         weaponData = newData;
         cooldownTimer = 0f;
+
+        // Cập nhật hình ảnh của khẩu súng trên tay nhân vật ngay khi nhặt
+        if (spriteRenderer != null && newData != null)
+        {
+            spriteRenderer.sprite = newData.weaponSprite;
+        }
     }
     private float cooldownTimer;
     private void Awake()
     {
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
         if (firePoint == null) firePoint = transform;
+    }
+    private void Start()
+    {
+        // Hiển thị hình ảnh vũ khí mặc định ban đầu nếu có gán sẵn dữ liệu
+        if (spriteRenderer != null && weaponData != null)
+        {
+            spriteRenderer.sprite = weaponData.weaponSprite;
+        }
     }
     private void Update()
     {

@@ -15,12 +15,26 @@ public class MeleeWeaponController : MonoBehaviour
     {
         weaponData = newData;
         cooldownTimer = 0f;
+
+        // Cập nhật hình ảnh vũ khí cận chiến trên tay nhân vật ngay khi nhặt
+        if (spriteRenderer != null && newData != null)
+        {
+            spriteRenderer.sprite = newData.weaponSprite;
+        }
     }
     private float cooldownTimer;
     private bool isSwinging;
     private void Awake()
     {
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    private void Start()
+    {
+        // Hiển thị hình ảnh vũ khí cận chiến mặc định ban đầu nếu có gán sẵn dữ liệu
+        if (spriteRenderer != null && weaponData != null)
+        {
+            spriteRenderer.sprite = weaponData.weaponSprite;
+        }
     }
     private void Update()
     {

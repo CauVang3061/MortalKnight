@@ -17,22 +17,44 @@ public class PlayerWeaponEquipper : MonoBehaviour
     public MeleeWeaponController MeleeController => meleeController;
     private void Awake()
     {
+        // Tự động kiểm tra cảnh báo nếu lập trình viên quên gán các bộ điều khiển vũ khí
+        if (gunController == null)
+        {
+            Debug.LogWarning("[PlayerWeaponEquipper] Bạn chưa kéo GunPivot vào ô 'Gun Controller' trong Inspector!", gameObject);
+        }
+        if (meleeController == null)
+        {
+            Debug.LogWarning("[PlayerWeaponEquipper] Bạn chưa kéo MeleePivot vào ô 'Melee Controller' trong Inspector!", gameObject);
+        }
+
         ShowOnly(EquippedType.Gun);
     }
     public void EquipGun(WeaponData data)
     {
-        gunController.Equip(data);
+        if (gunController != null)
+        {
+            gunController.Equip(data);
+        }
         ShowOnly(EquippedType.Gun);
     }
     public void EquipMelee(MeleeWeaponData data)
     {
-        meleeController.Equip(data);
+        if (meleeController != null)
+        {
+            meleeController.Equip(data);
+        }
         ShowOnly(EquippedType.Melee);
     }
     private void ShowOnly(EquippedType type)
     {
         CurrentType = type;
-        gunController.gameObject.SetActive(type == EquippedType.Gun);
-        meleeController.gameObject.SetActive(type == EquippedType.Melee);
+        if (gunController != null)
+        {
+            gunController.gameObject.SetActive(type == EquippedType.Gun);
+        }
+        if (meleeController != null)
+        {
+            meleeController.gameObject.SetActive(type == EquippedType.Melee);
+        }
     }
 }
