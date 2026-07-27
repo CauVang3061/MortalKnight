@@ -1,1 +1,1 @@
-MortalKnight - a homemade simple version of SoulKnight game
+MortalKnight - a self-made simple version of SoulKnight game
